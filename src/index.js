@@ -56,7 +56,7 @@ function setCliEnv (envValue) {
 
   const lcValue = envValue.toLowerCase()
 
-  // no config key set, or not a supported env, we return the default env
+  // if not a supported env, we throw an Error
   if (!SUPPORTED_ENVS.includes(lcValue)) {
     throw new Error(`env value ${envValue} is not a supported env. Valid values are ${JSON.stringify(SUPPORTED_ENVS)}`)
   }
