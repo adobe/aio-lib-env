@@ -9,7 +9,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const { getCliEnv, setCliEnv, SUPPORTED_ENVS, DEFAULT_ENV } = require('../src')
+const { getCliEnv, setCliEnv, SUPPORTED_ENVS, DEFAULT_ENV, PROD_ENV, STAGE_ENV } = require('../src')
 
 jest.mock('@adobe/aio-lib-core-config')
 const mockConfig = require('@adobe/aio-lib-core-config')
@@ -29,7 +29,11 @@ test('exports', () => {
   expect(typeof setCliEnv).toEqual('function')
   expect(Array.isArray(SUPPORTED_ENVS)).toBeTruthy()
   expect(DEFAULT_ENV).toBeDefined()
+  expect(PROD_ENV).toBeDefined()
+  expect(STAGE_ENV).toBeDefined()
   expect(SUPPORTED_ENVS.includes(DEFAULT_ENV)).toBeTruthy()
+  expect(SUPPORTED_ENVS.includes(PROD_ENV)).toBeTruthy()
+  expect(SUPPORTED_ENVS.includes(STAGE_ENV)).toBeTruthy()
 })
 
 describe('getCliEnv', () => {
