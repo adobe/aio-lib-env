@@ -62,7 +62,7 @@ Setting the Environment (in code)
 ```javascript
 const { setCliEnv, PROD_ENV, STAGE_ENV } = require('@adobe/aio-lib-env')
 
-setCliEnv(PROD_ENV')
+setCliEnv(PROD_ENV)
 setCliEnv(STAGE_ENV)
 setCliEnv('delta-quadrant') // throws Error
 ```
