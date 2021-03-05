@@ -1,0 +1,44 @@
+{
+  "version": "0.0.1",
+  "homepage": "https://github.com/adobe/aio-lib-env",
+  "license": "Apache-2.0",
+  "main": "src/index.js",
+  "name": "@adobe/aio-lib-env",
+  "repository": "https://github.com/adobe/aio-lib-env",
+  "bugs": {
+    "url": "https://github.com/adobe/aio-lib-env/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@adobe/aio-lib-core-config": "^2.0.0",
+    "@adobe/aio-lib-core-logging": "^1.2.0"
+  },
+  "deprecated": false,
+  "description": "Adobe I/O Lib",
+  "devDependencies": {
+    "@adobe/eslint-config-aio-lib-config": "^1.2.0",
+    "codecov": "^3.5.0",
+    "eslint": "^6.2.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^23.1.1",
+    "eslint-plugin-jsdoc": "^25.0.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "jest": "^24.8.0",
+    "jest-junit": "^10.0.0",
+    "jsdoc": "^3.6.3",
+    "jsdoc-to-markdown": "^5.0.0",
+    "stdout-stderr": "^0.1.9",
+    "tsd-jsdoc": "^2.4.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "lint": "eslint src test",
+    "test": "npm run lint && npm run unit-tests",
+    "unit-tests": "jest --config test/jest.config.js --maxWorkers=2"
+  }
+}
