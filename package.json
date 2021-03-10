@@ -14,7 +14,7 @@
     "@adobe/aio-lib-core-logging": "^1.2.0"
   },
   "deprecated": false,
-  "description": "Adobe I/O Lib",
+  "description": "Adobe I/O lib for determining dev environment",
   "devDependencies": {
     "@adobe/eslint-config-aio-lib-config": "^1.2.0",
     "codecov": "^3.5.0",
