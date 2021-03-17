@@ -40,7 +40,8 @@ const {
   STAGE_ENV /* string */
 } = require('@adobe/aio-lib-env')
 
-const env = getCliEnv()
+// getCliEnv defaults to PROD_ENV if the global config key is not set, or is set to an unknown env
+const env = getCliEnv() 
 // do something based on the env - switch to prod or stage endpoints, for example
 ```
 
