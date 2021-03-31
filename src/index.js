@@ -32,10 +32,10 @@ function getCliEnv () {
   logger.debug(`default env: ${DEFAULT_ENV}`)
   logger.debug(`config key to check for env: ${DEVELOPMENT_ENVIRONMENT_KEY}`)
 
-  const configValue = config.get(DEVELOPMENT_ENVIRONMENT_KEY)
+  const configValue = process.env.AIO_CLI_ENV || config.get(DEVELOPMENT_ENVIRONMENT_KEY)
   logger.debug(`config key value set for env: ${configValue}`)
 
-  const value = process.env.AIO_CLI_ENV || configValue || DEFAULT_ENV
+  const value = configValue || DEFAULT_ENV
   const lcValue = value.toLowerCase()
 
   // no config key set, or not a supported env, we return the default env
