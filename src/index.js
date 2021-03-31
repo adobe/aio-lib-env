@@ -35,7 +35,7 @@ function getCliEnv () {
   const configValue = config.get(DEVELOPMENT_ENVIRONMENT_KEY)
   logger.debug(`config key value set for env: ${configValue}`)
 
-  const value = configValue || DEFAULT_ENV
+  const value = process.env.AIO_CLI_ENV || configValue || DEFAULT_ENV
   const lcValue = value.toLowerCase()
 
   // no config key set, or not a supported env, we return the default env

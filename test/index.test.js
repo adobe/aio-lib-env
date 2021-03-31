@@ -62,6 +62,15 @@ describe('getCliEnv', () => {
     mockConfig.get.mockReturnValueOnce('some-invalid-env')
     expect(getCliEnv()).toEqual(PROD)
   })
+
+  test('reads from process.env before aioConfig', () => {
+    mockConfig.get.mockReturnValueOnce('some-invalid-env')
+    process.env.AIO_CLI_ENV = STAGE
+    expect(getCliEnv()).toEqual(STAGE)
+
+    delete process.env.AIO_CLI_ENV
+    expect(getCliEnv()).toEqual(PROD)
+  })
 })
 
 describe('setCliEnv', () => {
