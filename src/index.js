@@ -28,22 +28,33 @@ const DEFAULT_ENV = PROD_ENV
  * @returns {string} the cli environment (prod, stage)
  */
 function getCliEnv () {
-  logger.debug(`supported envs: ${JSON.stringify(SUPPORTED_ENVS)}`)
-  logger.debug(`default env: ${DEFAULT_ENV}`)
-  logger.debug(`config key to check for env: ${DEVELOPMENT_ENVIRONMENT_KEY}`)
+  /* The global var AIO_ENV_IS_STAGE is expected to be set during build time via WEBPACK config */
+  /* eslint no-undef: 0 */
+  const stageEnv = (typeof AIO_ENV_IS_STAGE === 'undefined') ? false : AIO_ENV_IS_STAGE
+  logger.debug(`AIO_ENV_IS_STAGE value is ${stageEnv}`)
 
-  const configValue = config.get(DEVELOPMENT_ENVIRONMENT_KEY)
-  logger.debug(`config key value set for env: ${configValue}`)
+  if (stageEnv) {
+    logger.debug(`return env as ${STAGE_ENV}`)
+    // return stage env if AIO_ENV_IS_STAGE set during build time
+    return STAGE_ENV
+  } else {
+    // try to get env value from config
+    logger.debug(`supported envs: ${JSON.stringify(SUPPORTED_ENVS)}`)
+    logger.debug(`default env: ${DEFAULT_ENV}`)
+    logger.debug(`config key to check for env: ${DEVELOPMENT_ENVIRONMENT_KEY}`)
 
-  const value = configValue || DEFAULT_ENV
-  const lcValue = value.toLowerCase()
+    const configValue = config.get(DEVELOPMENT_ENVIRONMENT_KEY)
+    logger.debug(`config key value set for env: ${configValue}`)
 
-  // no config key set, or not a supported env, we return the default env
-  if (!SUPPORTED_ENVS.includes(lcValue)) {
-    return DEFAULT_ENV
+    const value = configValue || DEFAULT_ENV
+    const lcValue = value.toLowerCase()
+
+    // no config key set, or not a supported env, we return the default env
+    if (!SUPPORTED_ENVS.includes(lcValue)) {
+      return DEFAULT_ENV
+    }
+    return lcValue
   }
-
-  return lcValue
 }
 
 /**
