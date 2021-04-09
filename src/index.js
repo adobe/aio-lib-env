@@ -32,7 +32,9 @@ function getCliEnv () {
   logger.debug(`default env: ${DEFAULT_ENV}`)
   logger.debug(`config key to check for env: ${DEVELOPMENT_ENVIRONMENT_KEY}`)
 
-  const configValue = config.get(DEVELOPMENT_ENVIRONMENT_KEY)
+  // The env AIO_CLI_ENV must be read explicitly instead of via `config.get` to support the case where the var is set via webpack
+  // after being webpack()'d the following line will look like this => const configValue = "prod" || config.get(DEVELOPMENT_ENVIRONMENT_KEY)
+  const configValue = process.env.AIO_CLI_ENV || config.get(DEVELOPMENT_ENVIRONMENT_KEY)
   logger.debug(`config key value set for env: ${configValue}`)
 
   const value = configValue || DEFAULT_ENV
